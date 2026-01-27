@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sharp — Mental Discipline Bundle</title>
+<title>Sharp Bundle</title>
 
-<meta name="description" content="Sharp is not motivation. It’s structure. A 3-book bundle for people who demand discipline, clarity, and action.">
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -15,43 +13,49 @@
 body{
     font-family:'Inter',sans-serif;
     color:#f1f1f1;
-    background:
-        radial-gradient(circle at top, #1a1a1a, #0b0b0b 55%),
-        linear-gradient(180deg,#090909,#121212);
-    background-attachment:fixed;
-    text-align:center;
-    line-height:1.6;
+    background:#0b0b0b;
     overflow-x:hidden;
 }
 
-/* ANIMATIONS */
-@keyframes fadeUp{
-    from{opacity:0;transform:translateY(40px);}
-    to{opacity:1;transform:translateY(0);}
-}
-@keyframes pulse{
-    0%{box-shadow:0 0 0 rgba(255,99,71,.3);}
-    70%{box-shadow:0 0 40px rgba(255,99,71,.85);}
-    100%{box-shadow:0 0 0 rgba(255,99,71,0);}
+/* ===== DYNAMIC BACKGROUND ===== */
+.bg{
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at top, rgba(255,99,71,.12), transparent 40%),
+      linear-gradient(180deg,#050505,#111);
+    z-index:-1;
+    transition:transform .2s ease;
 }
 
-/* HEADER */
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(60px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s ease;
+}
+.reveal.active{
+    opacity:1;
+    transform:none;
+}
+
+/* ===== HEADER ===== */
 header{
-    max-width:880px;
+    max-width:900px;
     margin:auto;
-    padding:90px 20px 60px;
-    animation:fadeUp 1.2s ease forwards;
+    padding:100px 20px 70px;
+    text-align:center;
 }
 
 header h1{
     font-family:'Playfair Display',serif;
-    font-size:54px;
-    font-weight:700;
+    font-size:52px;
     line-height:1.1;
-}
-
-header h1 span{
-    color:#ff6347;
 }
 
 header p{
@@ -60,94 +64,86 @@ header p{
     color:#cfcfcf;
 }
 
-header .micro{
-    margin-top:16px;
-    font-size:13px;
-    color:#9e9e9e;
-    letter-spacing:.4px;
-}
-
-/* SCROLL */
-.scroll{
+.scroll-indicator{
     margin-top:40px;
-    font-size:26px;
+    font-size:28px;
     opacity:.5;
+    animation:fadeUp 1.8s forwards;
 }
 
-/* SECTION */
+/* ===== SECTION ===== */
 section{
-    max-width:680px;
+    max-width:700px;
     margin:auto;
     padding:0 20px 100px;
 }
 
-/* BLOCKS */
 .block{
-    margin-bottom:75px;
-    animation:fadeUp 1s ease forwards;
+    margin:90px 0;
 }
 
-/* IMAGES */
+/* ===== IMAGE ===== */
 .product-image{
     width:100%;
     max-width:480px;
     border-radius:16px;
-    margin:35px auto;
-    box-shadow:0 0 60px rgba(0,0,0,.85);
+    display:block;
+    margin:40px auto;
+    box-shadow:0 40px 120px rgba(0,0,0,.9);
+    transform:translateY(0);
+    transition:.4s ease;
+}
+.product-image:hover{
+    transform:translateY(-6px);
 }
 
-/* TITLES */
+/* ===== TEXT ===== */
 h2{
     font-family:'Playfair Display',serif;
     font-size:30px;
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
-/* LIST */
-.list p{
-    text-align:left;
-    margin-bottom:12px;
-    padding-left:20px;
-    position:relative;
+p{
+    font-size:15px;
     color:#d6d6d6;
 }
+
+/* ===== LIST ===== */
+.list p{
+    margin-bottom:14px;
+    padding-left:22px;
+    position:relative;
+}
 .list p::before{
-    content:"—";
+    content:"▸";
     position:absolute;
     left:0;
     color:#ff6347;
 }
 
-/* DIVIDER */
-.divider{
-    width:90px;
-    height:2px;
-    background:#ff6347;
-    margin:80px auto;
-    opacity:.6;
-}
-
-/* PRICE */
+/* ===== PRICE ===== */
 .price-box{
-    margin-top:40px;
+    text-align:center;
+    margin-top:80px;
 }
 
 .old-price{
     font-size:15px;
-    color:#aaa;
+    color:#888;
     text-decoration:line-through;
 }
 
 .price{
-    font-size:60px;
+    font-size:64px;
     font-weight:700;
     color:#ff6347;
     margin:8px 0;
 }
 
-/* CTA */
+/* ===== CTA ===== */
 .cta{
-    margin-top:36px;
+    margin-top:34px;
 }
 .cta a{
     display:inline-block;
@@ -158,80 +154,102 @@ h2{
     font-weight:700;
     border-radius:14px;
     text-decoration:none;
-    animation:pulse 3s infinite;
-    transition:.3s;
+    transition:.25s ease;
+    position:relative;
 }
 .cta a:hover{
     transform:scale(1.1);
+    box-shadow:0 0 50px rgba(255,99,71,.6);
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer{
-    margin:120px 0 40px;
+    text-align:center;
+    padding-bottom:40px;
     font-size:12px;
     color:#777;
 }
 
+/* ===== MOBILE ===== */
 @media(max-width:600px){
-    header h1{font-size:38px;}
+    header h1{font-size:36px;}
+    .price{font-size:48px;}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>
-        Sharpen your mind.<br>
-        <span>Eliminate weakness.</span>
-    </h1>
-    <p>A 3-book discipline system for people who are done negotiating with themselves.</p>
-    <div class="micro">This is not for everyone — and that’s intentional.</div>
-    <div class="scroll">⌄</div>
+<div class="bg" id="bg"></div>
+
+<header class="reveal">
+  <h1>Sharpen Your Mind.<br>Rebuild Your Discipline.</h1>
+  <p>A 3-book mindset bundle for people who refuse to stay average.</p>
+  <div class="scroll-indicator">⌄</div>
 </header>
 
 <section>
 
-<img src="https://github.com/IPnoisy/sharphomepage/blob/main/anuncio%203%20ebooks%202%20finally%20version.png?raw=true" class="product-image">
+<img src="https://github.com/IPnoisy/sharphomepage/blob/main/anuncio%203%20ebooks%202%20finally%20version.png?raw=true"
+class="product-image reveal">
 
-<div class="block">
-    <h2>Why Sharp works</h2>
-    <div class="list">
-        <p>Mental structure over motivation</p>
-        <p>Discipline built through action</p>
-        <p>Clear thinking under pressure</p>
-        <p>Short, practical chapters — no filler</p>
-    </div>
+<div class="block reveal">
+  <h2>Why this bundle works</h2>
+  <div class="list">
+    <p>Clear mental structure</p>
+    <p>Discipline built through action</p>
+    <p>Confidence that compounds daily</p>
+    <p>No fluff. Only execution.</p>
+  </div>
 </div>
 
-<div class="divider"></div>
+<img src="https://github.com/IPnoisy/sharphomepage/blob/main/anuncio%203%20ebooks%20venda.png?raw=true"
+class="product-image reveal">
 
-<img src="https://github.com/IPnoisy/sharphomepage/blob/main/anuncio%203%20ebooks%20venda.png?raw=true" class="product-image">
-
-<div class="block">
-    <h2>Most people leave this page.</h2>
-    <p>
-        Not because of the price.<br><br>
-        But because discipline removes excuses.
-    </p>
+<div class="block reveal">
+  <h2>This is not motivation</h2>
+  <p>
+    Motivation fades.<br><br>
+    Systems don’t.<br><br>
+    Sharp is about installing systems in your mind.
+  </p>
 </div>
 
-<div class="price-box block">
-    <div class="old-price">Was $29.99</div>
-    <div class="price">$12.99</div>
+<div class="price-box reveal">
+  <div class="old-price">Was $29.99</div>
+  <div class="price">$12.99</div>
 
-    <div class="cta">
-        <a href="https://payhip.com/b/MtJmO" target="_blank">
-            CLAIM ACCESS
-        </a>
-    </div>
+  <div class="cta">
+    <a href="https://payhip.com/b/MtJmO" target="_blank">
+      UNLOCK THE BUNDLE
+    </a>
+  </div>
 </div>
 
 </section>
 
 <footer>
-    <p>&copy; 2025 Sharp. All rights reserved.</p>
+  <p>&copy; 2025 Sharp. Built for people who execute.</p>
 </footer>
+
+<script>
+/* ===== SCROLL REVEAL ===== */
+const reveals = document.querySelectorAll('.reveal');
+const bg = document.getElementById('bg');
+
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.85;
+
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < trigger){
+      el.classList.add('active');
+    }
+  });
+
+  bg.style.transform = `translateY(${window.scrollY * 0.08}px)`;
+});
+</script>
 
 </body>
 </html>
